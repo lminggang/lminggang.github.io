@@ -88,7 +88,7 @@
 <meta property="og:description" content="前期概述大家会来看GIL肯定是因为，在Python实现时遇到了多线程比单线程慢的原因。下面大概描述一下 python 中GIL为什么会影响多线程的程序执行效率。 什么是GIL官方解释:In CPython, the global interpreter lock, or GIL, is a mutex that prevents multiple native threads from execu">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2019/03/24/Python-GIL/images/Python-GIL.png">
-<meta property="og:updated_time" content="2019-03-24T07:33:19.038Z">
+<meta property="og:updated_time" content="2019-03-24T07:36:20.120Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python GIL 理解">
 <meta name="twitter:description" content="前期概述大家会来看GIL肯定是因为，在Python实现时遇到了多线程比单线程慢的原因。下面大概描述一下 python 中GIL为什么会影响多线程的程序执行效率。 什么是GIL官方解释:In CPython, the global interpreter lock, or GIL, is a mutex that prevents multiple native threads from execu">
@@ -339,6 +339,7 @@
 <p>所以简单的说GIL是历史遗留原因。</p>
 <h3 id="GIL为什么会慢"><a href="#GIL为什么会慢" class="headerlink" title="GIL为什么会慢"></a>GIL为什么会慢</h3><p>由于GIL是进程级别的所以在每个线程想要运行的时候就需要争取到时间切片来执行python字节码，频繁切换执行线程来实现多线程的效果。这样带来的问题，就是阻塞无法同时执行多个线程，而每次切换的时候线程也需要释放全局解释所给下一个执行的线程。所以才会造成在 Python 中多线程效率会比单线程慢的原因。<br><img src="images/Python-GIL.png" alt=""></p>
 <h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p>使用多进程 multiprocessing 来代替 thread，这样每个进程有一个GIL不会出现每个线程之间争抢GIL问题的出现，来提高程序的运行效率。</p>
+<h3 id="推荐博客"><a href="#推荐博客" class="headerlink" title="推荐博客"></a>推荐博客</h3><p>由于本人技术有限可能解释的不是特别清晰，如果想要深入了解查看下面博客:<br>卢钧轶(cenalulu) 本文原文地址：<a href="http://cenalulu.github.io/python/gil-in-python/dao&#39;zhi&#39;sui&#39;ran&#39;zhi&#39;xingdaozhisuiranzhixing" target="_blank" rel="noopener">http://cenalulu.github.io/python/gil-in-python/dao&#39;zhi&#39;sui&#39;ran&#39;zhi&#39;xingdaozhisuiranzhixing</a></p>
 
       
     </div>
@@ -511,7 +512,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前期概述"><span class="nav-number">1.</span> <span class="nav-text">前期概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是GIL"><span class="nav-number">2.</span> <span class="nav-text">什么是GIL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么会用GIL"><span class="nav-number">3.</span> <span class="nav-text">为什么会用GIL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GIL为什么会慢"><span class="nav-number">4.</span> <span class="nav-text">GIL为什么会慢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决办法"><span class="nav-number">5.</span> <span class="nav-text">解决办法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前期概述"><span class="nav-number">1.</span> <span class="nav-text">前期概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是GIL"><span class="nav-number">2.</span> <span class="nav-text">什么是GIL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么会用GIL"><span class="nav-number">3.</span> <span class="nav-text">为什么会用GIL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GIL为什么会慢"><span class="nav-number">4.</span> <span class="nav-text">GIL为什么会慢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决办法"><span class="nav-number">5.</span> <span class="nav-text">解决办法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#推荐博客"><span class="nav-number">6.</span> <span class="nav-text">推荐博客</span></a></li></ol></div>
             
 
           </div>

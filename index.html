@@ -340,6 +340,7 @@
 <p>所以简单的说GIL是历史遗留原因。</p>
 <h3 id="GIL为什么会慢"><a href="#GIL为什么会慢" class="headerlink" title="GIL为什么会慢"></a>GIL为什么会慢</h3><p>由于GIL是进程级别的所以在每个线程想要运行的时候就需要争取到时间切片来执行python字节码，频繁切换执行线程来实现多线程的效果。这样带来的问题，就是阻塞无法同时执行多个线程，而每次切换的时候线程也需要释放全局解释所给下一个执行的线程。所以才会造成在 Python 中多线程效率会比单线程慢的原因。<br><img src="images/Python-GIL.png" alt=""></p>
 <h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p>使用多进程 multiprocessing 来代替 thread，这样每个进程有一个GIL不会出现每个线程之间争抢GIL问题的出现，来提高程序的运行效率。</p>
+<h3 id="推荐博客"><a href="#推荐博客" class="headerlink" title="推荐博客"></a>推荐博客</h3><p>由于本人技术有限可能解释的不是特别清晰，如果想要深入了解查看下面博客:<br>卢钧轶(cenalulu) 本文原文地址：<a href="http://cenalulu.github.io/python/gil-in-python/dao&#39;zhi&#39;sui&#39;ran&#39;zhi&#39;xingdaozhisuiranzhixing" target="_blank" rel="noopener">http://cenalulu.github.io/python/gil-in-python/dao&#39;zhi&#39;sui&#39;ran&#39;zhi&#39;xingdaozhisuiranzhixing</a></p>
 
           
         
