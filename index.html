@@ -262,6 +262,264 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/24/Python-GIL/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liminggang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="liminggang Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/24/Python-GIL/" itemprop="url">Python GIL 理解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-24T14:53:41+08:00">
+                2019-03-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="前期概述"><a href="#前期概述" class="headerlink" title="前期概述"></a>前期概述</h3><p>大家会来看GIL肯定是因为，在Python实现时遇到了多线程比单线程慢的原因。<br>下面大概描述一下 python 中GIL为什么会影响多线程的程序执行效率。</p>
+<h3 id="什么是GIL"><a href="#什么是GIL" class="headerlink" title="什么是GIL"></a>什么是GIL</h3><p>官方解释:<br>In CPython, the global interpreter lock, or GIL, is a mutex that prevents multiple native threads from executing Python bytecodes at once. This lock is necessary mainly because CPython’s memory management is not thread-safe. (However, since the GIL exists, other features have grown to depend on the guarantees that it enforces.)<br>大概意思: 在 cpython 中全局解释所(GIL)是一个防止多个本机线程同时执行python字节码的一个东西。</p>
+<h3 id="为什么会用GIL"><a href="#为什么会用GIL" class="headerlink" title="为什么会用GIL"></a>为什么会用GIL</h3><p>由于早期时代，各大CPU厂商还是单核单线程。为了更有效的处理多核处理器的性能，就出现了多线程编程。<br>而带来的问题是，一致性以及同步困难的问题。于是就有了GIL这一把大锁来解决一致性与同步困难的问题。</p>
+<p>慢慢的发现这种实现方式，效率低下。但当大家试图去拆分和去除GIL时，已经有大量代码库开发者严重依赖于GIL而且非常难以去除。</p>
+<p>所以简单的说GIL是历史遗留原因。</p>
+<h3 id="GIL为什么会慢"><a href="#GIL为什么会慢" class="headerlink" title="GIL为什么会慢"></a>GIL为什么会慢</h3><p>由于GIL是进程级别的所以在每个线程想要运行的时候就需要争取到时间切片来执行python字节码，频繁切换执行线程来实现多线程的效果。这样带来的问题，就是阻塞无法同时执行多个线程，而每次切换的时候线程也需要释放全局解释所给下一个执行的线程。所以才会造成在 Python 中多线程效率会比单线程慢的原因。<br><img src="images/Python-GIL.png" alt=""></p>
+<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p>使用多进程 multiprocessing 来代替 thread，这样每个进程有一个GIL不会出现每个线程之间争抢GIL问题的出现，来提高程序的运行效率。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/09/baiduyun-xianshu/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liminggang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="liminggang Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/09/baiduyun-xianshu/" itemprop="url">Mac 百度云限速解决方案</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-09T09:49:47+08:00">
+                2019-03-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>先来说说百度云，这个东西真是又爱又恨。<br>爱: 免费，空间大<br>恨: 下载速度是真的慢啊!!!!<br>还好最近发现一个大神的程序<br>链接: <a href="https://github.com/CodeTips/BaiduNetdiskPlugin-macOS" target="_blank" rel="noopener">https://github.com/CodeTips/BaiduNetdiskPlugin-macOS</a><br>废话不多说直接进入正题</li>
+<li><p>懒人安装 有Git<br>打开终端直接执行下面代码即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ~/Downloads &amp;&amp; </span><br><span class="line">git clone https://github.com/CodeTips/BaiduNetdiskPlugin-macOS.git &amp;&amp; </span><br><span class="line">./BaiduNetdiskPlugin-macOS/Other/Install.sh</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>普通安装 没装Git<br>打开下面网页地址 Command + F 弹出框输入 Clone or download 如果是绿色的按钮，那么恭喜你找到了。点击后选择 Download ZIP下载到本地。默认Mac下载地址应该都是 Downloads(这个很关键)<br>找到下载的.zip包 双击解压后输入如下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ~/Downloads &amp;&amp; ./BaiduNetdiskPlugin-macOS-master/Other/Install.sh</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装完成<br>安装完成后会提示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/Applications/BaiduNetdisk_mac.app/Contents/MacOS/BaiduNetdisk_mac already exists. Overwrite it? [y/n] y</span><br><span class="line">LC_CODE_SIGNATURE load command found. Remove it? [y/n] y</span><br><span class="line">Added LC_LOAD_DYLIB to /Applications/BaiduNetdisk_mac.app/Contents/MacOS/BaiduNetdisk_mac</span><br><span class="line"></span><br><span class="line">	Done！</span><br></pre></td></tr></table></figure>
+<p>  这个时候就已经万事俱备了！这个时候你需要重启你的百度云看到VIP标志闪亮那么就是成功了。</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/11/pycharm-mac-cracl/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -963,7 +1221,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -985,7 +1243,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
